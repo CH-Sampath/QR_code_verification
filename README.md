@@ -33,7 +33,7 @@ To get started with this project, follow these steps:
 - Change the IP address on line 33 in mobile_app.py to the ip address of your phone, i.e. http://<mobile-ip>/video
 - Start the webcam server and then run the codes.
 
-2. Clone the repository:
+2. Follow the below steps:
    ```sh
    git clone https://github.com/CH-Sampath/QR_code_verification.git
    cd QR_code_verification
