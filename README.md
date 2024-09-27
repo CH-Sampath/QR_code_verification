@@ -27,7 +27,13 @@ This file contains the server-side logic for handling QR code verification reque
 ## Getting Started
 To get started with this project, follow these steps:
 
-1. Clone the repository:
+1. IP Camera Setup
+- Switch on Mobile Hotspot on your PC and connect your phone to the hotspot
+- Install Webcam
+- Change the IP address on line 33 in mobile_app.py to the ip address of your phone, i.e. http://<mobile-ip>/video
+- Start the webcam server and then run the codes.
+
+2. Clone the repository:
    ```sh
    git clone https://github.com/CH-Sampath/QR_code_verification.git
    cd QR_code_verification
@@ -36,4 +42,5 @@ To get started with this project, follow these steps:
    python app.py
    python mobile_app.py
    ```
+
 
