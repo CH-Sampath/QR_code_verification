@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <p>User ID: {{ user_id }}</p>
+    <p>Token: {{ token }}</p>
+    <p>GUID: {{ guid }}</p>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        // Periodically call the heartbeat function every 30 seconds
+        window.onload = function() {
+            setInterval(function() {
+                heartbeat();
+            }, 30000); // 30 seconds in milliseconds
+        };
+
+        // Heartbeat function to check session validity
+        function heartbeat() {
+            fetch('http://localhost:5000/heartbeat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Ensure JSON content type
+                },
+                body: JSON.stringify({
+                    user_id: '{{ user_id }}',
+                    token: '{{ token }}'
+                }),  // Send user_id and token in the body
+            }).then(response => response.json())  // Convert response to JSON
+            .then(data => {
+                if (!data.success) {
+                    // If session is not valid, call the logout function
+                    alert(data.msg);  // Alert with the message from the server (session expired or invalid)
+                    logout();
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Network error occurred during heartbeat check');
+                logout();  // Optionally log out on network error to be safe
+            });
+        }
+
+        // Logout function
+        function logout() {
+            fetch('http://localhost:5000/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',  // Ensure JSON content type
+                },
+                body: JSON.stringify({ user_id: '{{ user_id }}' }),  // Send the user_id in the logout request
+            }).then(response => {
+                if (response.ok) {
+                    alert('Logged out successfully');
+                    window.location.href = 'http://localhost:5001';  // Redirect to the login page
+                } else {
+                    alert('Error logging out');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Network error occurred during logout');
+            });
+        }
+    </script>
+</body>
+</html>

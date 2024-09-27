@@ -1,0 +1,9 @@
+Flask
+Flask-SocketIO
+Flask-Cors
+qrcode
+requests
+kivy
+opencv-python
+pyzbar
+python-socketio
