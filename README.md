@@ -1,4 +1,4 @@
-# QR Code Verification Project
+# QR Code Verification
 
 ## Overview
 This project is designed to provide a comprehensive solution for QR code verification. It includes a web application, a mobile application, and a server-side script to handle various functionalities related to QR code generation and verification.
