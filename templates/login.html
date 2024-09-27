@@ -28,6 +28,10 @@
 socket.on('login-event', function(data) {
     alert("User " + data.user_id + " logged in with token: " + data.token);
 
+    // Save user_id and token in sessionStorage
+    sessionStorage.setItem('user_id', data.user_id);
+    sessionStorage.setItem('token', data.token);
+
     // Use fetch to make a POST request to the /success route
     fetch('http://localhost:5001/success', {
         method: 'POST',
@@ -53,6 +57,7 @@ socket.on('login-event', function(data) {
         alert("Login failed: " + error.message);
     });
 });
+
 
         // Fetch the initial QR code when the page loads
         window.onload = function() {

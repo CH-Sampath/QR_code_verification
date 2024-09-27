@@ -79,7 +79,7 @@ def heartbeat():
 
     if user_id in user_tokens and user_tokens[user_id]['token'] == token:
         # Refresh the session timestamp
-        if time.time() - user_tokens[user_id]['timestamp'] < SESSION_TIMEOUT:
+        if time.time() - user_tokens[user_id]['timestamp'] < SESSION_TIMEOUT*10:
             user_tokens[user_id]['timestamp'] = time.time()
             return jsonify({'success': True, 'msg': "Session valid"})
         else:
